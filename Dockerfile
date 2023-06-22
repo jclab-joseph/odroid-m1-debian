@@ -12,7 +12,7 @@ RUN mkdir -p /work/boot /work/rootfs /work/output
 ARG DEBIAN_MIRROR=
 RUN debootstrap \
     --arch=arm64 \
-    --include=bash-completion,vim,util-linux,fdisk,openssl,passwd,systemd,openssh-server,openssh-sftp-server,openssh-client,ifupdown2,isc-dhcp-client,gnupg2,initramfs-tools \
+    --include=ca-certificates,bash-completion,vim,util-linux,fdisk,openssl,passwd,systemd,openssh-server,openssh-sftp-server,openssh-client,ifupdown2,isc-dhcp-client,gnupg2,initramfs-tools \
     bullseye \
     /work/rootfs \
     ${DEBIAN_MIRROR}
