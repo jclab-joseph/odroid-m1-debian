@@ -24,6 +24,9 @@ jobs:
         with:
           path: |
             output/*
+      - run: |
+        cd output
+        gzip disk.img
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
