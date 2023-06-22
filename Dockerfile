@@ -26,9 +26,8 @@ RUN chroot /work/rootfs update-initramfs -k 4.19.219-odroid-arm64 -c
 
 RUN ROOTFS_SIZE=$(du -sb /work/rootfs | sed -E 's/\t/ /g' | cut -d' ' -f1) && \
     ROOTFS_SIZE=$((ROOTFS_SIZE + 134217728 + 1048575)) && \
-    ROOTFS_SIZE=$((ROOTFS_SIZE / 1048576))
-
-RUN rm -rf /work/rootfs/debootstrap && \
+    ROOTFS_SIZE=$((ROOTFS_SIZE / 1048576)) && \
+    rm -rf /work/rootfs/debootstrap && \
     mke2fs -L 'rootfs' \
     -N 0 \
     -d "/work/rootfs/" \
