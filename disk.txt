@@ -1,0 +1,7 @@
+label: dos
+unit: sectors
+sector-size: 512
+
+/data.bin1 : start=        2048, size=     1024000, type=83
+/data.bin2 : start=     1026048, type=83
+
