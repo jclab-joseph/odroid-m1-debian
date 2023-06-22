@@ -17,6 +17,8 @@ RUN debootstrap \
     /work/rootfs \
     ${DEBIAN_MIRROR}
 
+ARG KERNEL_VERSION=4.19.219-odroid-arm64
+
 RUN wget -O /work/rootfs/tmp/kernel.deb https://github.com/jclab-joseph/odroid-m1-kernel-builder/releases/download/v4.19.219-r0/linux-image-4.19.219-odroid-arm64_4.19.219-odroid-arm64-1_arm64.deb && \
     chroot /work/rootfs dpkg --install /tmp/kernel.deb
 
@@ -38,6 +40,7 @@ RUN rm -rf /work/rootfs/debootstrap && \
 
 COPY "boot" "/work/boot/"
 RUN cp /work/rootfs/boot/* /work/boot/ && \
+    (cd /work/boot/ && ln -s vmlinuz-${KERNEL_VERSION} vmlinuz && ln -s initrd.img-${KERNEL_VERSION} initrd.img) && \
     rm -rf /work/rootfs/boot/* && \
     mke2fs -L 'boot' \
     -N 0 \
