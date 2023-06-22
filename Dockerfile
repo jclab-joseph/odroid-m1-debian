@@ -37,7 +37,8 @@ RUN rm -rf /work/rootfs/debootstrap && \
     ${ROOTFS_SIZE}M
 
 COPY "boot" "/work/boot/"
-RUN cp /work/rootfs/boot/initrd.img-4.19.219-odroid-arm64 /work/boot/initrd.img-4.19.219-odroid-arm64 && \
+RUN cp /work/rootfs/boot/* /work/boot/ && \
+    rm -rf /work/rootfs/boot/* && \
     mke2fs -L 'boot' \
     -N 0 \
     -d "/work/boot/" \
