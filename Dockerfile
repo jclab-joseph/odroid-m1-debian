@@ -29,7 +29,7 @@ RUN ROOTFS_SIZE=$(du -sb /work/rootfs | sed -E 's/\t/ /g' | cut -d' ' -f1) && \
     ROOTFS_SIZE=$((ROOTFS_SIZE / 1048576)) && \
     echo "export ROOTFS_SIZE=${ROOTFS_SIZE}" > /work/env && \
     rm -rf /work/rootfs/debootstrap && \
-    mke2fs -L 'rootfs' \
+    mke2fs -L 'rootfs' -U ceda8f42-2a7b-488d-87d3-3bd789087f35 \
     -N 0 \
     -d "/work/rootfs/" \
     -m 5 \
